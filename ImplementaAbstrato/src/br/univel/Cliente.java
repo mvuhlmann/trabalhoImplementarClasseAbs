@@ -12,7 +12,7 @@ public class Cliente {
 	}
 	
 	public static void main(String []args){
-		EC(EstadoCivil.C);
+		EC(EstadoCivil.CASADO);
 	}
 
 	public Integer getId() {
