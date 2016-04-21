@@ -1,8 +1,10 @@
 package br.univel;
-
+@Tabela(value="Cliente")
 public class Cliente {
-
-	private Integer id;
+	
+	@Coluna(pk=true, nome="cadid", tamanho = 0)
+	private int id;
+	@Coluna(nome="cadnome", tamanho=45)
 	private String nome;
 	private String end;
 	private String tel;
