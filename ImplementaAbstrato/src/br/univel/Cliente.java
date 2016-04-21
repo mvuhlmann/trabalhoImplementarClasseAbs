@@ -9,12 +9,14 @@ public class Cliente {
 	private String end;
 	private String tel;
 	
-	public static void EC(EstadoCivil estado){
-		
+	public Cliente(){
+		this(0, null);
 	}
 	
-	public static void main(String []args){
-		EC(EstadoCivil.CASADO);
+	public Cliente(int id, String nome){
+		super();
+		this.id = id;
+		this.nome = nome;
 	}
 
 	public Integer getId() {
