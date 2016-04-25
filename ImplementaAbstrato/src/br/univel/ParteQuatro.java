@@ -49,6 +49,7 @@ public class ParteQuatro extends SqlGen{
 		return null;
 	}
 
+	@SuppressWarnings("unused")
 	private PreparedStatement getPreparedStatementForInset(Connection con, Object obj) {
 
 		Class<? extends Object> cl = obj.getClass();
