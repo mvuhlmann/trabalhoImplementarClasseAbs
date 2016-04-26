@@ -1,27 +1,27 @@
 package br.univel;
 
-public class ParteCinco<T, K> implements Dao<T, K>{
+public abstract class ParteCinco<T, K> implements Dao<Cliente, Integer>{
 
 	@Override
-	public void salvar(T t) {
+	public void salvar(Cliente t) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public T buscar(K k) {
+	public Cliente buscar(Integer k) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void atualizar(T t) {
+	public void atualizar(Cliente t) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void excluir(K k) {
+	public void excluir(Integer k) {
 		// TODO Auto-generated method stub
 		
 	}
