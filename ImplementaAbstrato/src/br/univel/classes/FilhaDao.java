@@ -12,7 +12,7 @@ import br.univel.interfaces.Dao;
 
 public class FilhaDao implements Dao<Cliente, Object>{
 
-	FilhaSqlGen gerador = new FilhaSqlGen();
+	FilhaSqlGen gerar = new FilhaSqlGen();
 
 	private Connection con = null;
 
@@ -27,7 +27,7 @@ public class FilhaDao implements Dao<Cliente, Object>{
 	@Override
 	public void salvar(Cliente c) {
 		try {
-			PreparedStatement ps = gerador.getSqlInsert(con, c);
+			PreparedStatement ps = gerar.getSqlInsert(con, c);
 			ps.setInt(1, c.getId());
 			ps.setString(2, c.getNome());
 			ps.setString(3, c.getEnd());
@@ -46,16 +46,16 @@ public class FilhaDao implements Dao<Cliente, Object>{
 
 		try {
 
-			PreparedStatement ps = gerador.getSqlSelectById(con, new Cliente());
+			PreparedStatement ps = gerar.getSqlSelectById(con, new Cliente());
 			ps.setInt(1, k);
 			ResultSet resultados = ps.executeQuery();
 
 			while (resultados.next()) {
-				c.setId(resultados.getInt("id"));
-				c.setNome(resultados.getString("clinome"));
-				c.setEnd(resultados.getString("cliendereco"));
-				c.setTel(resultados.getString("clitelefone"));
-				c.setEstadocivil(EstadoCivil.getPorid(resultados.getInt("cliestadocivil")));
+				c.setId(resultados.getInt("id_cliente"));
+				c.setNome(resultados.getString("nome_cliente"));
+				c.setEnd(resultados.getString("end_cliente"));
+				c.setTel(resultados.getString("tel_cliente"));
+				c.setEstadocivil(EstadoCivil.getPorid(resultados.getInt("estadoCivil_cliente")));
 			}			
 
 			ps.close();
@@ -71,7 +71,7 @@ public class FilhaDao implements Dao<Cliente, Object>{
 	@Override
 	public void atualizar(Cliente t) {
 		try {
-			PreparedStatement ps = gerador.getSqlUpdateById(con, t);
+			PreparedStatement ps = gerar.getSqlUpdateById(con, t);
 			ps.setString(1, t.getNome());
 			ps.setString(2, t.getEnd());
 			ps.setString(3, t.getTel());
@@ -90,7 +90,7 @@ public class FilhaDao implements Dao<Cliente, Object>{
 	public void excluir(Integer k) {
 		try {
 
-			PreparedStatement ps = gerador.getSqlDeleteById(con, new Cliente());
+			PreparedStatement ps = gerar.getSqlDeleteById(con, new Cliente());
 			ps.setInt(1, k);
 			ps.executeUpdate();
 			ps.close();
@@ -108,7 +108,7 @@ public class FilhaDao implements Dao<Cliente, Object>{
 
 		try {
 
-			PreparedStatement ps = gerador.getSqlSelectAll(con, new Cliente());
+			PreparedStatement ps = gerar.getSqlSelectAll(con, new Cliente());
 			ResultSet resultados = ps.executeQuery();
 
 			while (resultados.next()) {
@@ -135,7 +135,7 @@ public class FilhaDao implements Dao<Cliente, Object>{
 
 	public void criarTabela(Cliente t){
 		try {
-			String sql = gerador.getCreateTable(con, t);	
+			String sql = gerar.getCreateTable(con, t);	
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.executeUpdate();
 			ps.close();
@@ -149,7 +149,7 @@ public class FilhaDao implements Dao<Cliente, Object>{
 
 	public void apagarTabela(Cliente t){
 		try {
-			String sql = gerador.getDropTable(con, t);	
+			String sql = gerar.getDropTable(con, t);	
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.executeUpdate();
 			ps.close();
